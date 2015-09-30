@@ -1,6 +1,6 @@
-# Google Analytics Top Content Widget #
+# Google Analytics Top Content Widget - modified for bounce rate #
 
-**Contributors:** jtsternberg, TomArrow
+**Contributors:** jtsternberg and TomArrow
 **Plugin Name:**  Google Analytics Top Content Widget - modified for bounce rate
 **Plugin URI:** http://j.ustin.co/yWTtmy  
 **Tags:** google analytics, google, top posts, top content, display rank, page rank, page views, widget, sidebar, sidebar widget, Google Analytics by Yoast, shortcode, site stats, statistics, stats  
