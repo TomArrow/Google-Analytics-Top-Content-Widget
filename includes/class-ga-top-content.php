@@ -39,14 +39,11 @@ class GA_Top_Content {
 			'update'          => false,
 		);
 
-		// only do TGM Plugin Activation if we don't already have Yoast Google Analytics active
-		if ( ! class_exists( 'Yoast_GA_Admin' ) ) {
-			require_once GATC_DIR . 'vendor/tgm-plugin-activation/class-tgm-plugin-activation.php';
-			add_action( 'tgmpa_register', array( $this, 'register_required_plugins' ) );
+		require_once GATC_DIR . 'vendor/tgm-plugin-activation/class-tgm-plugin-activation.php';
+		add_action( 'tgmpa_register', array( $this, 'register_required_plugins' ) );
 
-			add_filter( 'tgmpa_complete_link_text', array( $this, 'change_link_text' ) );
-			add_filter( 'tgmpa_complete_link_url', array( $this, 'change_link_url' ) );
-		}
+		add_filter( 'tgmpa_complete_link_text', array( $this, 'change_link_text' ) );
+		add_filter( 'tgmpa_complete_link_url', array( $this, 'change_link_url' ) );
 
 		// Top Content Shortcode
 		add_shortcode( 'google_top_content', array( $this, 'top_content_shortcode' ) );
@@ -105,8 +102,8 @@ class GA_Top_Content {
 		$config = array(
 			'domain'           => 'top-google-posts',
 			'default_path'     => '',
-			'parent_slug'      => 'plugins.php',
-			'capability'       => 'install_plugins',
+			'parent_menu_slug' => 'plugins.php',
+			'parent_url_slug'  => 'plugins.php',
 			'menu'             => 'install-required-plugins',
 			'has_notices'      => true,
 			'is_automatic'     => true,
@@ -213,13 +210,14 @@ class GA_Top_Content {
 			'start-date'  => date( 'Y-m-d', $time_diff ),
 			'end-date'    => date( 'Y-m-d' ),
 			'dimensions'  => 'ga:pageTitle,ga:pagePath',
-			'metrics'     => 'ga:pageViews',
-			'sort'        => '-ga:pageviews',
+			'metrics'     => 'ga:pageViews,ga:bounceRate',
+			'sort'        => 'ga:bounceRate',
 			'filters'     => urlencode( 'ga:pageviews>' . $atts['pageviews'] ),
 			'max-results' => 100,
 		);
 
-		$pages = $this->parse_list_response( $this->make_request( $params, 'top_content_'. $atts['context'] ) );
+		$stuff = $this->make_request( $params, 'top_content_'. $atts['context'] );
+		$pages = $this->parse_list_response( $stuff );
 
 		$pages = apply_filters( 'gtc_pages_filter', $pages, $atts );
 
@@ -554,6 +552,7 @@ class GA_Top_Content {
 			'name'  => (string) $item[0],
 			'path'  => (string) $item[1],
 			'value' => (int) $item[2],
+			'bounceRate' => (float) $item[3],
 		);
 	}
 
