@@ -1,7 +1,7 @@
 # Google Analytics Top Content Widget #
 
-**Contributors:** jtsternberg  
-**Plugin Name:**  Google Analytics Top Content Widget  
+**Contributors:** jtsternberg, TomArrow
+**Plugin Name:**  Google Analytics Top Content Widget - modified for bounce rate
 **Plugin URI:** http://j.ustin.co/yWTtmy  
 **Tags:** google analytics, google, top posts, top content, display rank, page rank, page views, widget, sidebar, sidebar widget, Google Analytics by Yoast, shortcode, site stats, statistics, stats  
 **Author:** Jtsternberg  
@@ -14,7 +14,7 @@
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
-Widget and shortcode to display top content according to Google Analytics. ("Google Analytics by Yoast" plugin required)
+Widget and shortcode to display top content according to Google Analytics. This version is modified to sort by bounce rate. ("Google Analytics by Yoast" plugin required)
 
 ## Description ##
 
